@@ -1,0 +1,14 @@
+$ python3 pyjail_golf1.py 
+>>> help(flag)
+No Python documentation found for 'pctf{JusT_a5k_4_h3lP!}'.
+Use help() to get the interactive help utility.
+Use help(str) for help on the str class.
+
+###
+
+$ python3 pyjail_golf2.py 
+>>> help(ﬂag)
+No Python documentation found for 'pctf{Un1c0d3_i5_sw34t}'.
+Use help() to get the interactive help utility.
+Use help(str) for help on the str class.
+
