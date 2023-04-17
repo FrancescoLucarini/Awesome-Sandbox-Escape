@@ -1,0 +1,39 @@
+version: "3.3"
+services:
+  challenge-1:
+    build: ./challenge-part-1
+    ports:
+      - "${CHALLENGE_1_PORT}:65000/tcp"
+    environment: 
+      CHALLENGE_2_PORT: ${CHALLENGE_2_PORT}
+      CHALLENGE_2_DOMAIN: ${CHALLENGE_2_DOMAIN}
+  challenge-2:
+    build: ./challenge-part-2
+    ports:
+      - "${CHALLENGE_2_PORT}:65001/tcp"
+    environment: 
+      CHALLENGE_1_PORT: ${CHALLENGE_1_PORT}
+      CHALLENGE_1_DOMAIN: ${CHALLENGE_1_DOMAIN}
+      CHALLENGE_3_PORT: ${CHALLENGE_3_PORT}
+      CHALLENGE_3_DOMAIN: ${CHALLENGE_3_DOMAIN}
+  challenge-3:
+    build: ./challenge-part-3
+    ports:
+      - "${CHALLENGE_3_PORT}:65002/tcp"
+    environment: 
+      CHALLENGE_2_PORT: ${CHALLENGE_2_PORT}
+      CHALLENGE_2_DOMAIN: ${CHALLENGE_2_DOMAIN}
+  autosolver:
+    build: ./autosolver
+    environment:
+      CHALLENGE_1_PORT: ${CHALLENGE_1_PORT}
+      CHALLENGE_2_PORT: ${CHALLENGE_2_PORT}
+      CHALLENGE_3_PORT: ${CHALLENGE_3_PORT}
+      CHALLENGE_1_DOMAIN: challenge-1 
+      CHALLENGE_2_DOMAIN: challenge-2 
+      CHALLENGE_3_DOMAIN: challenge-3 
+        #network_mode: "host"
+    depends_on:
+      - challenge-1
+      - challenge-2
+      - challenge-3

