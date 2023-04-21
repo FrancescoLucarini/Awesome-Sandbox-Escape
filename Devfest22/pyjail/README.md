@@ -11,3 +11,5 @@
 ### Attachments
 
 [pyjail.zip](./pyjail.zip)
+
+[Solution](./challenge/solution.txt)
